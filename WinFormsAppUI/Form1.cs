@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using WinFormsAppUI.Data;
 using WinFormsAppUI.DataViewModels;
 
@@ -36,6 +37,8 @@ namespace WinFormsAppUI
         {
             Category addedCategory = new Category();
             addedCategory.CategoryName = txtCategoryName.Text;
+            if (string.IsNullOrEmpty(txtCategoryName.Text))
+                throw new Exception("Kategori adı boş olamaz");
 
             context.Categories.Add(addedCategory);// gride adı girip ekle butonu ile yeni kategori ekledik
             context.SaveChanges(); // bu fonksiyonu çağırmazsak db tarafında güncelleme olmaz.
